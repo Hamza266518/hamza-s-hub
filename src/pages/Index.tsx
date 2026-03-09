@@ -1,11 +1,84 @@
-import { Instagram, Globe, Mail } from "lucide-react";
+import { Instagram, Globe, Mail, Languages } from "lucide-react";
 import profileAvatar from "@/assets/profile-avatar.png";
 import mylistIcon from "@/assets/mylist-icon.png";
 import LinkButton from "@/components/LinkButton";
+import { useState, useEffect } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { Button } from "@/components/ui/button";
+
+type Language = "en" | "fr" | "ar";
+
+const translations = {
+  en: {
+    title: "Hamza Yechaoui",
+    subtitle: "Creator · Developer · Building cool things ✨",
+    instagram: "Instagram",
+    download: "Download Mylist App",
+    website: "My Website",
+    contact: "Contact Me",
+    footer: "© 2026 All rights reserved to Hamza",
+    langName: "English",
+  },
+  fr: {
+    title: "Hamza Yechaoui",
+    subtitle: "Créateur · Développeur · Construction de trucs cools ✨",
+    instagram: "Instagram",
+    download: "Télécharger l'application Mylist",
+    website: "Mon Site Web",
+    contact: "Contactez-moi",
+    footer: "© 2026 All rights reserved to Hamza",
+    langName: "Français",
+  },
+  ar: {
+    title: "حمزة يشاوي",
+    subtitle: "منشئ محتوى · مطور · بناء أشياء رائعة ✨",
+    instagram: "إنستغرام",
+    download: "تحميل تطبيق Mylist",
+    website: "موقعي الإلكتروني",
+    contact: "تواصل معي",
+    footer: "© 2026 All rights reserved to Hamza",
+    langName: "العربية",
+  },
+};
 
 const Index = () => {
+  const [lang, setLang] = useState<Language>(() => {
+    const saved = localStorage.getItem("app-lang");
+    return (saved as Language) || "en";
+  });
+
+  useEffect(() => {
+    localStorage.setItem("app-lang", lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  }, [lang]);
+
+  const t = translations[lang];
+
   return (
-    <div className="min-h-screen bg-background relative overflow-hidden">
+    <div className={`min-h-screen bg-background relative overflow-hidden ${lang === 'ar' ? 'font-arabic' : ''}`}>
+      {/* Language Switcher */}
+      <div className="absolute top-4 right-4 z-20">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" size="sm" className="gap-2">
+              <Languages size={16} />
+              {t.langName}
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem onClick={() => setLang("en")}>English</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setLang("fr")}>Français</DropdownMenuItem>
+            <DropdownMenuItem onClick={() => setLang("ar")}>العربية</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
       {/* Subtle gradient orbs */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -top-32 -right-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl" />
@@ -25,10 +98,10 @@ const Index = () => {
             </div>
             <div className="text-center">
               <h1 className="text-2xl font-display font-bold text-foreground">
-                Hamza Yechaoui
+                {t.title}
               </h1>
               <p className="text-muted-foreground mt-1 text-sm">
-                Creator · Developer · Building cool things ✨
+                {t.subtitle}
               </p>
             </div>
           </div>
@@ -41,7 +114,7 @@ const Index = () => {
               icon={<Instagram size={22} />}
               variant="primary"
             >
-              Instagram
+              {t.instagram}
             </LinkButton>
 
             {/* Mylist App Download - Gradient CTA */}
@@ -52,22 +125,26 @@ const Index = () => {
               }
               variant="gradient"
             >
-              Download Mylist App
+              {t.download}
             </LinkButton>
 
-            {/* Placeholder links */}
-            <LinkButton href="#" icon={<Globe size={20} />}>
-              My Website
+            {/* My Website - Redirect to Coming Soon */}
+            <LinkButton
+              href="/coming-soon"
+              icon={<Globe size={20} />}
+              isInternal={true}
+            >
+              {t.website}
             </LinkButton>
 
             <LinkButton href="mailto:hamzayechaoui@gmail.com" icon={<Mail size={20} />}>
-              Contact Me
+              {t.contact}
             </LinkButton>
           </div>
 
           {/* Footer */}
           <p className="text-xs text-muted-foreground/60 mt-4">
-            © 2026 All rights reserved to Hamza
+            {t.footer}
           </p>
         </div>
       </div>
