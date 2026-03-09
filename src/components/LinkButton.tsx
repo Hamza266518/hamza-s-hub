@@ -11,7 +11,7 @@ const variantStyles = {
   default:
     "bg-card hover:bg-secondary border border-border hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5",
   primary:
-    "bg-card hover:bg-secondary border border-border hover:border-primary/30 hover:shadow-lg hover:shadow-primary/10",
+    "bg-primary text-primary-foreground hover:opacity-90 hover:shadow-lg hover:shadow-primary/10",
   gradient:
     "bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 hover:shadow-xl hover:shadow-primary/20 hover:scale-[1.02]",
 };
