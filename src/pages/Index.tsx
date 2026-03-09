@@ -41,7 +41,7 @@ const Index = () => {
               icon={<Instagram size={22} />}
               variant="primary"
             >
-              @hamza_9_49 on Instagram
+              Instagram
             </LinkButton>
 
             {/* Mylist App Download - Gradient CTA */}
@@ -60,11 +60,7 @@ const Index = () => {
               My Website
             </LinkButton>
 
-            <LinkButton href="#" icon={<Music size={20} />}>
-              My Playlist
-            </LinkButton>
-
-            <LinkButton href="#" icon={<Mail size={20} />}>
+            <LinkButton href="mailto:hamzayechaoui@gmail.com" icon={<Mail size={20} />}>
               Contact Me
             </LinkButton>
           </div>
