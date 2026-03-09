@@ -1,4 +1,4 @@
-import { Instagram, Download, Globe, Music, Mail } from "lucide-react";
+import { Instagram, Globe, Mail } from "lucide-react";
 import profileAvatar from "@/assets/profile-avatar.png";
 import mylistIcon from "@/assets/mylist-icon.png";
 import LinkButton from "@/components/LinkButton";
