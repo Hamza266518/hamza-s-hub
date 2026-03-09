@@ -25,7 +25,7 @@ const Index = () => {
             </div>
             <div className="text-center">
               <h1 className="text-2xl font-display font-bold text-foreground">
-                hamza_9_49
+                Hamza Yechaoui
               </h1>
               <p className="text-muted-foreground mt-1 text-sm">
                 Creator · Developer · Building cool things ✨
@@ -46,7 +46,7 @@ const Index = () => {
 
             {/* Mylist App Download - Gradient CTA */}
             <LinkButton
-              href="#"
+              href="/public/Mylist.apk"
               icon={
                 <img src={mylistIcon} alt="Mylist" className="w-7 h-7 rounded-lg" />
               }
@@ -67,7 +67,7 @@ const Index = () => {
 
           {/* Footer */}
           <p className="text-xs text-muted-foreground/60 mt-4">
-            © 2026 hamza_9_49 · All rights reserved
+            © 2026 All rights reserved to Hamza
           </p>
         </div>
       </div>
